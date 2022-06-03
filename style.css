@@ -1,5 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-
+:root {
+  --card-border: linear-gradient(
+    to right,
+    #bf953f,
+    #fcf6ba,
+    #b38728,
+    #fbf5b7,
+    #aa771c
+  );
+}
 * {
   box-sizing: border-box;
 }
@@ -33,8 +42,7 @@ body {
 }
 
 #pokeCard {
-  border: 2px solid
-    linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+  border: 10px solid gray;
   height: 350px;
 }
 
