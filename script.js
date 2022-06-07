@@ -86,6 +86,8 @@ async function createPokemon(data) {
   cardBorder.append(pokeCard)
 
   document.querySelector("main").append(cardBorder)
+  userInput.value = ""
+  userInput.focus()
 }
 
 async function fetchAbility(link) {
@@ -94,4 +96,12 @@ async function fetchAbility(link) {
 
   const description = data.effect_entries[1].short_effect
   return description
+}
+
+
+// Delete on click
+window.onclick = event => {
+  if (event.target.tagName === "IMG") {
+    event.target.parentNode.parentNode.parentNode.remove()
+  }
 }

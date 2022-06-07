@@ -31,6 +31,16 @@ header {
   margin: 2rem;
 }
 
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title h1 {
+  margin-bottom: 0;
+}
 .info p {
   margin: 0;
 }
@@ -54,14 +64,15 @@ header {
   padding: 1rem;
   position: relative;
   background: linear-gradient(to right, red, purple);
-
   padding: 10px;
+  border-radius: 0.5rem;
 }
 .pokeCard {
   background: white;
   height: 400px;
   width: 400px;
   color: black;
+  padding: 0.5rem;
 }
 
 .pokeCard img {
