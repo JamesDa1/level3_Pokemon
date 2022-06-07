@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+:root {
+  --card-border: linear-gradient(
+    to right,
+    #bf953f,
+    #fcf6ba,
+    #b38728,
+    #fbf5b7,
+    #aa771c
+  );
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+}
+
+.info p {
+  margin: 0;
+}
+
+.info .pokeType {
+  font-size: 0.7rem;
+}
+
+.info .pokeName {
+  font-weight: 700;
+}
+
+.info span.hp {
+  float: right;
+  color: red;
+}
+
+.wrapper {
+  max-width: 450px;
+  padding: 1rem;
+  position: relative;
+  background: linear-gradient(to right, red, purple);
+  padding: 10px;
+}
+.pokeCard {
+  background: #222;
+  height: 400px;
+  width: 400px;
+  color: white;
+}
+
+.pokeCard img {
+  border: 2px solid gold;
+  width: 100%;
+  max-height: 150px;
+}
+
+img {
+  z-index: -1;
+  padding: 0;
+  margin: 0;
+}
+
+h4 {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin-top: 0.5rem;
+}
