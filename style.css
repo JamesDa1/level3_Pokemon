@@ -16,18 +16,19 @@
 main {
   font-family: "Roboto", sans-serif;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
   justify-content: center;
-  height: 100vh;
-  overflow: hidden;
   margin: 0;
 }
+
 header {
-  margin-top: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 2rem;
 }
 
 .info p {
@@ -47,15 +48,31 @@ header {
   color: red;
 }
 
-#pokeCard {
-  border: 10px solid gray;
-  height: 350px;
+/* Needed to get color gradient border  */
+.wrapper {
+  max-width: 450px;
+  padding: 1rem;
+  position: relative;
+  background: linear-gradient(to right, red, purple);
+
+  padding: 10px;
+}
+.pokeCard {
+  background: white;
+  height: 400px;
+  width: 400px;
+  color: black;
 }
 
-#pokeCard img {
+.pokeCard img {
   border: 2px solid gold;
-  height: 150px;
-  width: 200px;
+  width: 100%;
+  max-height: 150px;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
 }
 
 img {
@@ -64,6 +81,11 @@ img {
   margin: 0;
 }
 
-.right {
-  float: right;
+h4 {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin-top: 0.5rem;
 }
