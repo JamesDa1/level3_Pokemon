@@ -13,7 +13,7 @@
   box-sizing: border-box;
 }
 
-body {
+main {
   font-family: "Roboto", sans-serif;
   display: flex;
   flex-direction: column;
@@ -22,6 +22,12 @@ body {
   height: 100vh;
   overflow: hidden;
   margin: 0;
+}
+header {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .info p {
@@ -56,4 +62,8 @@ img {
   z-index: -1;
   padding: 0;
   margin: 0;
+}
+
+.right {
+  float: right;
 }

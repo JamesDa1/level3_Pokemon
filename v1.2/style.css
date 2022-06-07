@@ -13,7 +13,7 @@
   box-sizing: border-box;
 }
 
-body {
+main {
   font-family: "Roboto", sans-serif;
   display: flex;
   flex-direction: row;
@@ -22,6 +22,13 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   margin: 0;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
 }
 
 .info p {
@@ -41,24 +48,31 @@ body {
   color: red;
 }
 
+/* Needed to get color gradient border  */
 .wrapper {
   max-width: 450px;
   padding: 1rem;
   position: relative;
   background: linear-gradient(to right, red, purple);
+
   padding: 10px;
 }
 .pokeCard {
-  background: #222;
+  background: white;
   height: 400px;
   width: 400px;
-  color: white;
+  color: black;
 }
 
 .pokeCard img {
   border: 2px solid gold;
   width: 100%;
   max-height: 150px;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
 }
 
 img {

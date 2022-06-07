@@ -1,13 +1,21 @@
 const pokeCard = document.getElementById("pokeCard")
+const userInput = document.querySelector("#userInput")
+const searchBtn = document.querySelector("#search")
+searchBtn.addEventListener("click", function () {
+  if (!userInput.value) return
+  fetchPokemonData(userInput.value)
+})
 
+userInput.addEventListener("change", function () {
+  if (!userInput.value) return
+  fetchPokemonData(userInput.value)
+})
 async function fetchPokemonData(number) {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${number}`)
   const data = await response.json()
 
   createPokemon(data)
-
 }
-
 
 async function createPokemon(data) {
   // need: name, ID, type, img, ability, abilityText, Hp
@@ -21,7 +29,9 @@ async function createPokemon(data) {
 
   const pokeType = document.createElement("p")
   pokeType.classList.add("pokeType")
-  pokeType.textContent = `${(data.types[0].type.name).replace(/^\w/, (c) => c.toUpperCase())} Pokemon`
+  pokeType.textContent = `${data.types[0].type.name.replace(/^\w/, (c) =>
+    c.toUpperCase()
+  )} Pokemon`
 
   // PokeName, append span Name and span HP
   const pokeName = document.createElement("p")
@@ -32,7 +42,9 @@ async function createPokemon(data) {
   pokeNameSpanName.classList.add("name")
 
   const pokeNameSpanHP = document.createElement("span")
-  pokeNameSpanHP.textContent = `${data.stats[0].base_stat} ${(data.stats[0].stat.name.toUpperCase())}`
+  pokeNameSpanHP.textContent = `${
+    data.stats[0].base_stat
+  } ${data.stats[0].stat.name.toUpperCase()}`
   pokeNameSpanHP.classList.add("hp")
 
   const pokeImgCont = document.createElement("div")
@@ -57,7 +69,12 @@ async function createPokemon(data) {
   const abilityDesc02 = document.createElement("p")
   abilityDesc02.textContent = await fetchAbility(data.abilities[1].ability.url)
 
-  abilityCont.append(abilityTitle01, abilityDesc01, abilityTitle02, abilityDesc02)
+  abilityCont.append(
+    abilityTitle01,
+    abilityDesc01,
+    abilityTitle02,
+    abilityDesc02
+  )
 
   // Append the Spans to the name p element
   pokeName.append(pokeNameSpanName, pokeNameSpanHP)
@@ -67,24 +84,14 @@ async function createPokemon(data) {
   const cardBorder = document.createElement("div")
   cardBorder.classList.add("wrapper")
   cardBorder.append(pokeCard)
-  
-  document.querySelector("body").append(cardBorder)
-}
 
+  document.querySelector("main").append(cardBorder)
+}
 
 async function fetchAbility(link) {
   const response = await fetch(link)
   const data = await response.json()
-  
+
   const description = data.effect_entries[1].short_effect
   return description
-  
 }
-
-
-fetchPokemonData(1)
-fetchPokemonData(1)
-fetchPokemonData(1)
-fetchPokemonData(1)
-fetchPokemonData(1)
-fetchPokemonData(1)
