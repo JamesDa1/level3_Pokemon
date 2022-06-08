@@ -29,7 +29,7 @@ async function createPokemon(data) {
   const paragraphDexID = document.createElement("p")
 
   const divInfoLower = document.createElement("div") // Contains Name and HP
-  const paragraphName = document.createElement("p")
+  const paragraphName = document.createElement("a")
   const paragraphHP = document.createElement("p")
 
   const divImage = document.createElement("div")
@@ -60,6 +60,8 @@ async function createPokemon(data) {
     .join("/")
   paragraphDexID.textContent = data.id
   paragraphName.textContent = capitalizeString(data.name)
+  paragraphName.href = `https://pokemon.fandom.com/wiki/${data.name}`
+  paragraphName.target = "_blank"
   paragraphHP.textContent = data.stats
     .map((stats) => {
       if (stats.stat.name === "hp") {
@@ -106,6 +108,9 @@ async function createPokemon(data) {
   divPokeCard.append(divInfo, divImage, divAbilities)
   divWrapper.append(divPokeCard)
   document.querySelector("main").append(divWrapper)
+ 
+  userInput.value = ""
+  userInput.focus()
 }
 
 // Capitalizes the first letter of a string
