@@ -18,89 +18,102 @@ async function fetchPokemonData(number) {
 }
 
 async function createPokemon(data) {
-  // need: name, ID, type, img, ability, abilityText, Hp
-  // Create HTML elements
-  const pokeCard = document.createElement("div")
-  pokeCard.classList.add("pokeCard")
+  const divWrapper = document.createElement("div")
+  const divPokeCard = document.createElement("div")
 
-  // Poke INFO
-  const pokeInfo = document.createElement("div")
-  pokeInfo.classList.add("info")
+  // Line above Name containing: Type and DexID
+  const divInfo = document.createElement("div") // Contains: divInfoUpper, divInfoLower
 
-  const pokeType = document.createElement("p")
-  pokeType.classList.add("pokeType")
-  pokeType.textContent = `${data.types[0].type.name.replace(/^\w/, (c) =>
-    c.toUpperCase()
-  )} Pokemon`
+  const divInfoUpper = document.createElement("div") // Contains: type and dexID
+  const paragraphType = document.createElement("p")
+  const paragraphDexID = document.createElement("p")
 
-  // PokeName, append span Name and span HP
-  const pokeName = document.createElement("p")
-  pokeName.classList.add("pokeName")
+  const divInfoLower = document.createElement("div") // Contains Name and HP
+  const paragraphName = document.createElement("p")
+  const paragraphHP = document.createElement("p")
 
-  const pokeNameSpanName = document.createElement("span")
-  pokeNameSpanName.textContent = data.name.toUpperCase()
-  pokeNameSpanName.classList.add("name")
+  const divImage = document.createElement("div")
+  const imgSprite = document.createElement("img")
+  const divAbilities = document.createElement("div")
 
-  const pokeNameSpanHP = document.createElement("span")
-  pokeNameSpanHP.textContent = `${
-    data.stats[0].base_stat
-  } ${data.stats[0].stat.name.toUpperCase()}`
-  pokeNameSpanHP.classList.add("hp")
+  // adding classes
+  divWrapper.classList.add("wrapper")
+  divPokeCard.classList.add("pokeCard")
 
-  const pokeImgCont = document.createElement("div")
-  pokeImgCont.classList.add("image")
+  divInfo.classList.add("info")
+  divInfoUpper.classList.add("infoUpper")
+  divInfoLower.classList.add("infoLower")
+  divImage.classList.add("image")
 
-  const pokeImg = document.createElement("img")
-  pokeImg.src = data.sprites.front_default
-  pokeImgCont.append(pokeImg)
+  divAbilities.classList.add("ability")
 
-  const abilityCont = document.createElement("div")
-  abilityCont.classList.add("abilities")
+  paragraphType.classList.add("type")
+  paragraphName.classList.add("name")
+  paragraphDexID.classList.add("dexID")
+  paragraphHP.classList.add("hp")
 
-  const abilityTitle01 = document.createElement("h4")
-  abilityTitle01.textContent = data.abilities[0].ability.name
+  // Adding data
+  paragraphType.textContent = data.types
+    .map((e) => {
+      return capitalizeString(e.type.name)
+    })
+    .join("/")
+  paragraphDexID.textContent = data.id
+  paragraphName.textContent = capitalizeString(data.name)
+  paragraphHP.textContent = data.stats
+    .map((stats) => {
+      if (stats.stat.name === "hp") {
+        return `${stats.base_stat} ${stats.stat.name.toUpperCase()}`
+      }
+    })
+    .join("")
+  imgSprite.src = data.sprites.front_default
+  imgSprite.alt = "Pokemon"
 
-  const abilityDesc01 = document.createElement("p")
-  abilityDesc01.textContent = await fetchAbility(data.abilities[0].ability.url)
+  const abilityData = data.abilities.map((ability) => {
+    return Array(capitalizeString(ability.ability.name), ability.ability.url)
+  })
 
-  const abilityTitle02 = document.createElement("h4")
-  abilityTitle02.textContent = data.abilities[1].ability.name
+  // Number of abilities can vary, using .map to account for it
+  abilityData.map(async (e) => {
+    const response = await fetch(e[1])
+    const data = await response.json()
 
-  const abilityDesc02 = document.createElement("p")
-  abilityDesc02.textContent = await fetchAbility(data.abilities[1].ability.url)
+    const abilityDescription = data.effect_entries
+      .map((e) => {
+        if (e.language.name === "en") {
+          return e.short_effect
+        } else {
+          return ""
+        }
+      })
+      .join("")
 
-  abilityCont.append(
-    abilityTitle01,
-    abilityDesc01,
-    abilityTitle02,
-    abilityDesc02
-  )
+    const abilityTitle = document.createElement("h4")
+    const abilityText = document.createElement("p")
+    abilityTitle.textContent = e[0].toUpperCase()
+    abilityText.textContent = abilityDescription
 
-  // Append the Spans to the name p element
-  pokeName.append(pokeNameSpanName, pokeNameSpanHP)
-  pokeInfo.append(pokeType, pokeName)
-  pokeCard.append(pokeInfo, pokeImgCont, abilityCont)
-  console.log(pokeCard)
-  const cardBorder = document.createElement("div")
-  cardBorder.classList.add("wrapper")
-  cardBorder.append(pokeCard)
+    divAbilities.append(abilityTitle, abilityText)
+  })
 
-  document.querySelector("main").append(cardBorder)
-  userInput.value = ""
-  userInput.focus()
+  divInfoUpper.append(paragraphType, paragraphDexID)
+  divInfoLower.append(paragraphName, paragraphHP)
+  divInfo.append(divInfoUpper, divInfoLower)
+
+  divImage.append(imgSprite)
+
+  divPokeCard.append(divInfo, divImage, divAbilities)
+  divWrapper.append(divPokeCard)
+  document.querySelector("main").append(divWrapper)
 }
 
-async function fetchAbility(link) {
-  const response = await fetch(link)
-  const data = await response.json()
-
-  const description = data.effect_entries[1].short_effect
-  return description
+// Capitalizes the first letter of a string
+function capitalizeString(string) {
+  return string.replace(/^\w/, (c) => c.toUpperCase())
 }
 
-
-// Delete on click
-window.onclick = event => {
+window.onclick = (event) => {
   if (event.target.tagName === "IMG") {
     event.target.parentNode.parentNode.parentNode.remove()
   }
