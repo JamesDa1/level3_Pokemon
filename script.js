@@ -1,4 +1,3 @@
-const pokeCard = document.getElementById("pokeCard")
 const userInput = document.querySelector("#userInput")
 const searchBtn = document.querySelector("#search")
 searchBtn.addEventListener("click", function () {
