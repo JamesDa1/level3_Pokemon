@@ -13,90 +13,104 @@
   box-sizing: border-box;
 }
 
-main {
-  font-family: "Roboto", sans-serif;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0;
-}
-
 header {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 2rem;
 }
 
-.title {
+header .title {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.title h1 {
+header .title h1 {
   margin-bottom: 0;
 }
-.info p {
-  margin: 0;
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
 }
 
-.info .pokeType {
-  font-size: 0.7rem;
-}
-
-.info .pokeName {
-  font-weight: 700;
-}
-
-.info span.hp {
-  float: right;
-  color: red;
-}
-
-/* Needed to get color gradient border  */
 .wrapper {
-  max-width: 450px;
   padding: 1rem;
   position: relative;
   background: linear-gradient(to right, red, purple);
+
   padding: 10px;
+  height: 500px;
+  width: 450px;
   border-radius: 0.5rem;
 }
+
 .pokeCard {
   background: white;
-  height: 400px;
-  width: 400px;
-  color: black;
-  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  border: 4px solid brown;
+  height: 100%;
 }
 
-.pokeCard img {
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image img {
   border: 2px solid gold;
   width: 100%;
+  height: 150px;
   max-height: 150px;
 }
 
-header {
+.info {
   display: flex;
   flex-direction: column;
 }
 
-img {
-  z-index: -1;
-  padding: 0;
-  margin: 0;
+.info .infoUpper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info .infoLower {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: ;
+}
+
+.info .infoUpper p,
+.info .infoLower p {
+  margin-right: 10px;
+}
+
+.info .infoLower .hp {
+  color: red;
+  font-weight: 700;
 }
 
 h4 {
-  margin: 0;
-  padding: 0;
+  margin: 0 auto;
+  margin-top: 1rem;
 }
 
 p {
   margin-top: 0.5rem;
+  margin-inline: 1rem;
+}
+
+.ability {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
