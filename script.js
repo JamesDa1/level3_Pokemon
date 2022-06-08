@@ -10,10 +10,10 @@ userInput.addEventListener("change", function () {
   if (!userInput.value) return
   fetchPokemonData(userInput.value)
 })
-async function fetchPokemonData(number) {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${number}`)
+async function fetchPokemonData(query) {
+  console.log(typeof userInput.value)
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${query.toLowerCase()}`) // pokeApi only takes lowercase strings pikachu != Pikachu
   const data = await response.json()
-
   createPokemon(data)
 }
 

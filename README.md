@@ -1,13 +1,10 @@
 # level3_Pokemon
 
-Made some wrong assumptions during the development, so there some erros on some pokemon. 
-Example assumptions:
-- Assumed that the lists were ordered the same. Language =[en, ru, etc.] But the order was changes for some pokemon
-- fix: map over the arrays and explictly select "en"
+Using the Pokeapi to display pokemon, works with ID and name.
+Try: 11, 12, 123 to see pokemon with 1, 2 and 3 abilities
 
+Todo:
 
-Styling suggestions:
-- type = left, name = middle
-DexNr: Above name
-Type, and DexNr on same line above Name
-. 
+- Clean the stylesheet, remove duplicates and redundant code.
+- Improve styling
+  - Example, create div for abilities, so that they can be automatically centered regardless of 1, 2 or 3 abilities
